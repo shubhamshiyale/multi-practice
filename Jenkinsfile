@@ -1,15 +1,17 @@
-node('master')
+pipeline{
+     agent any
 
-{
-
-stage('ContinuousDownload_master')
-         {
-    git 'https://github.com/sunildevops77/maven.git'
-        }
-
-stage('Continuousbuild_master')
-         {
-   sh label: '', script: 'mvn package'
-        }
-
+            stages{
+               stage ('git-checkout'){
+                                   steps{
+                                         git "https://github.com/shubhamshiyale/multi-practice.git"
 }
+}
+               stage('mvn') {
+			   steps {
+			   sh "mvn package"
+			   }
+			   }
+}
+}
+
